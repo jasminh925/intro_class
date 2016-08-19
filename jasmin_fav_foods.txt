@@ -1,0 +1,6 @@
+pasta
+chicken
+sushi
+soup
+pizza
+burrito
