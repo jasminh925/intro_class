@@ -1,5 +1,6 @@
 from urllib2 import urlopen
 from json import load
+from movieinfo import MovieInfo
 
 #sf open data source: film location in sf
 apiUrl = "https://data.sfgov.org/resource/yitu-d5am.json?"
@@ -19,4 +20,26 @@ for film in json_obj:
 			film_2002.sort()
 
 
-print film_2002_sort
+# def getMovie():
+# 	movies = []
+# 	for row in movies:
+# 		movies.append(getMovie(row))
+# 	return movies
+
+def getMovie_info(movies_list):
+	movies = []
+	for row in movies_list:
+		director = row["director"]
+		release_year = row["release_year"]
+		title = row["title"]
+		if "actor_1" in row:
+			actor_1 = row["actor_1"]
+		if "actor_2" in row:
+			actor_2 = row["actor_2"]
+		location = None
+		if "location" in row:
+			location = row["location"]
+		movies.append(MovieInfo(director, release_year, title, actor_1,actor_2,location))
+	return movies
+
+print getMovie_info(json_obj)
